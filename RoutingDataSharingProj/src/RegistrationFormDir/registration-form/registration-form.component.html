@@ -1,0 +1,53 @@
+<div class="container">
+<form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+
+  <!--<label>
+    Date:
+    <input type="date" formControlName="date">
+  </label>
+
+  <label>
+    Gender:
+    <input type="radio" formControlName="gender" value="male">male
+    <input type="radio" formControlName="gender" value="female">female
+  </label>
+
+  <label>
+    EmailId:
+    <input type="text" formControlName="emailId">
+  </label>
+
+  <label>
+    Password:
+    <input type="text" formControlName="password">
+  </label>
+
+  <label>
+    confirmPassword:
+    <input type="text" formControlName="confirmPassword">
+  </label>
+
+
+
+  <label>
+    Marks:
+    English:<input type="number" formControlName="english">
+    Maths:<input type="number" formControlName="maths">
+  </label>-->
+
+<button class="btn btn-primary" type="submit" [disabled]="!registrationForm.valid">Submit</button>
+
+
+</form>
+</div>
