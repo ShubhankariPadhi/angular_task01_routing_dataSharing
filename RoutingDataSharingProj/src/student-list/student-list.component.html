@@ -1,0 +1,14 @@
+
+<div class="container col-md-12 col-sm-12 col-12" >
+
+  <table  class="table ">
+    <tr><td colspan="6">Student list</td></tr>
+    <tr><th>ID</th><th>NAME</th><th>LOCALITY</th><th>ZIPCODE</th><th>VIEW</th><th>EDIT</th></tr>
+    <tr  *ngFor="let student of stuDataArray" ><td>
+      {{student.id}}</td><td>{{student.name}}</td><td>{{student.address.area}}</td><td>{{student.address.zipcode}}
+    </td><td> <button class="btn" id="viewbtn" (click)="view(student.id)">view</button></td><td><button class="btn" id="editbtn" (click)="edit(student.id)">edit</button></td>
+    </tr></table></div>
+
+<router-outlet></router-outlet>
+
+<app-student-marks  [ary]="stuMarks" [getSelectedId]="selectedId" ></app-student-marks>
