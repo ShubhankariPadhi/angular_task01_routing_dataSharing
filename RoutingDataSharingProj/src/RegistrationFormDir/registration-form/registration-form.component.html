@@ -1,53 +1,160 @@
+
+<!--Template Driven Form Registration form-->
+<!--<div class="container" >
+  <form #myform="ngForm" name="formname" novalidate>
+    <div class="form-group">
+      <label>first name:</label>
+      <input class="form-control" [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel"
+             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
+      <div class="invalid-feedback">
+        <div>required field</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>last name:</label>
+      <input class="form-control" [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel"
+             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
+      <div class="invalid-feedback">
+        <div>required field</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>password:</label>
+      <input class="form-control" [(ngModel)]="model.password" name="firstName" #password="ngModel"
+             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
+      <div class="invalid-feedback">
+        <div>required field</div>
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary">register</button>
+  </form>
+  {{model | json}}
+
+</div>-->
+
+
+<!--validation of a form using tdf-->
+<!--
 <div class="container">
-<form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+  <form  #signupForm="ngForm" name="signupForm" (ngSubmit)="register(signupForm)">
+    <div class="form-group">
+      <label>firstName:</label>
+      <input type="text" class="form-control " required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
 
-  <label>
-    First Name:
-    <input type="text" formControlName="firstName">
-  </label>
+      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">super hero name is required</div>
 
+    </div>
 
-  <label>
-    Last Name:
-    <input type="text" formControlName="lastName">
-  </label>
-
-  <!--<label>
-    Date:
-    <input type="date" formControlName="date">
-  </label>
-
-  <label>
-    Gender:
-    <input type="radio" formControlName="gender" value="male">male
-    <input type="radio" formControlName="gender" value="female">female
-  </label>
-
-  <label>
-    EmailId:
-    <input type="text" formControlName="emailId">
-  </label>
-
-  <label>
-    Password:
-    <input type="text" formControlName="password">
-  </label>
-
-  <label>
-    confirmPassword:
-    <input type="text" formControlName="confirmPassword">
-  </label>
+    <div class="form-group">
+      <label>specialities</label>
+      <select type="text" class="form-control" [(ngModel)]="model.speciality" name="speciality" #speciality="ngModel">
+        <option *ngFor="let spec of specialities" value="spec">{{spec}}</option>
+      </select>
+      <div [hidden]="speciality.valid || speciality.pristine" class="alert alert-danger">speciality is required</div>
+    </div>
 
 
+      <fieldset ngModelGroup="address">
+        <legend>Address</legend>
+           <div class="form-group">
+            <label>city:</label>
+             <input type="text" name="city" class="form-control" [(ngModel)]="model.city"  ngModel #city="ngModel">
+             <div [hidden]="city.valid||city.pristine" class="alert alert-danger" >
+               city should not be empty
+             </div>
+            </div>
+        <div>
+          <label>pincode:</label>
+          <input type="number" name="pincode" class="form-control" [(ngModel)]="model.pincode" #pincode="ngModel" ngModel>
+          <div [hidden]="pincode.valid || pincode.pristine" class="alert alert-danger">
+            enter a valid pincoden
+          </div>
+        </div>
 
-  <label>
-    Marks:
-    English:<input type="number" formControlName="english">
-    Maths:<input type="number" formControlName="maths">
-  </label>-->
+      </fieldset>
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Submit</button>
+  </form>
+{{model|json}}
+</div>
+-->
+
+
+<div class="container">
+<form  [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onSubmit()" >
+
+  <div class="form-group">
+  <label> First Name: </label>
+    <input type="text" formControlName="firstName" class="form-control" [ngClass]="{'is-invalid':
+    registrationForm.get('firstName').touched && registrationForm.get('firstName').invalid}"/>
+    <div  *ngIf=" registrationForm.get('firstName').touched && registrationForm.get('firstName').invalid" class="invalid-feedback">
+      <div *ngIf="registrationForm.get('firstName').errors.required">first name is required</div>
+      <div *ngIf="registrationForm.get('firstName').errors.minLength">minimum length should be 3 characters </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <label>Last Name:</label>
+    <input type="text" formControlName="lastName" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Date:</label>
+    <input type="date" formControlName="date" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label> Gender:</label>
+     <input type="radio" formControlName="gender" value="male" class="form-control">male
+    <input type="radio" formControlName="gender" value="female" class="form-control">female
+  </div>
+
+  <div class="form-group">
+    <label> EmailId:</label>
+    <input type="text" formControlName="emailId" class="form-control">
+     </div>
+
+
+  <div class="form-group">
+    <label>Password:</label>
+  <input type="text" formControlName="password" class="form-control">
+  </div>
+
+  <div>
+    <label>confirmPassword:</label>
+    <input type="text" formControlName="confirmPassword" class="form-control">
+  </div>
+
+
+  <label>Marks section</label>
+  <div formGroupName="marks">
+
+    <div class="form-group">
+      <label>Maths:</label>
+      <input type="number" formControlName="math" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>English:</label>
+      <input type="number" formControlName="english" class="form-control">
+    </div>
+
+  </div>
+
 
 <button class="btn btn-primary" type="submit" [disabled]="!registrationForm.valid">Submit</button>
 
 
 </form>
+  {{registrationForm.value | json}}
 </div>
+
+
+
+
+
