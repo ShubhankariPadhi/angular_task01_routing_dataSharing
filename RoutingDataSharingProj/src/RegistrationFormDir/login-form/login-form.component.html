@@ -1,1 +1,33 @@
-<p>login-form works!</p>
+
+<div class="container">
+  <form  [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()" novalidate>
+
+    <div class="form-group">
+      <label> emailId: </label>
+      <input type="text" formControlName="emailId" class="form-control" [ngClass]="{'is-invalid':
+    loginForm.get('emailId').touched && loginForm.get('emailId').invalid}"/>
+      <div  *ngIf=" loginForm.get('emailId').touched && loginForm.get('emailId').invalid" class="invalid-feedback">
+        <div *ngIf="loginForm.get('emailId').errors.required">first name is required</div>
+        <div *ngIf="loginForm.get('emailId').errors.minLength">minimum length should be 3 characters </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="text" formControlName="password" class="form-control">
+    </div>
+
+
+    <button class="btn btn-primary" type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">Submit</button>
+
+
+  </form>
+  {{loginForm.value | json}}
+  <div>
+    {{successfulMessage}}
+  </div>
+ <!-- <div *ngIf="onSubmit()" class="text text-success">{{successfulMessage}}
+  </div>
+  <div *ngIf="!onSubmit()" class="text text-danger">{{successfulMessage}}
+  </div>-->
+</div>

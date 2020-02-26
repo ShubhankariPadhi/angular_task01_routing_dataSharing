@@ -5,6 +5,8 @@ import {StudentMarksComponent} from "../student-marks/student-marks.component";
 import {StudentListComponent} from "../student-list/student-list.component";
 import {RegistrationFormComponent} from "../RegistrationFormDir/registration-form/registration-form.component";
 import {LoginFormComponent} from "../RegistrationFormDir/login-form/login-form.component";
+import {AppComponent} from "./app.component";
+import {HomeComponent} from "../RegistrationFormDir/home/home.component";
 
 
 const routes: Routes = [
@@ -19,8 +21,8 @@ const routes: Routes = [
 
 
   {path:'registrationForm',component:RegistrationFormComponent},
-  {path:'loginForm',component:LoginFormComponent}
-
+  {path:'loginForm',component:LoginFormComponent},
+  {path:'home',component:HomeComponent}
 
 ];
 
@@ -31,6 +33,6 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 export const routingComponents=[
-  StudentMarksComponent, StudentEditComponent
+  StudentMarksComponent, StudentEditComponent,HomeComponent
 
 ];

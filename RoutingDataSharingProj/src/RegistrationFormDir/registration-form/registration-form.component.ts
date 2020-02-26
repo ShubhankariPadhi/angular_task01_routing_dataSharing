@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration-form',
@@ -12,12 +13,12 @@ export class RegistrationFormComponent implements OnInit {
   specialities=['energetic','powerful','intelligent'];
   // Reactive Form
     registrationForm= new FormGroup({
-    firstName:new FormControl('',[Validators.required,Validators.minLength(3)]),
-    lastName:new FormControl('',Validators.required),
+    firstName:this.fb.control('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
+    lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     date:new FormControl('',Validators.required),
     gender:new FormControl('',Validators.required),
-    emailId:new FormControl('',Validators.required),
-    password:new FormControl('',Validators.required),
+    emailId:new FormControl('',[Validators.required,Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")]),
+    password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,10}$')]),
     confirmPassword:new FormControl('',Validators.required),
 
     marks:new FormGroup({
@@ -26,20 +27,28 @@ export class RegistrationFormComponent implements OnInit {
     }),
 
   });
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder , private router:Router) {
 
   }
 
   ngOnInit() {
+
   }
   onSubmit(){
+
+
+    let emailId=this.registrationForm.controls['emailId'].value;
+    let password=this.registrationForm.controls['password'].value;
+
+
+    localStorage.setItem('mailId',emailId);
+    localStorage.setItem('psw',password);
+
     console.log(JSON.stringify(this.registrationForm.value));
+    this.router.navigate(['home']);
   }
-
-  /*register(formData){
-//set local storage
-  // console.warn(this.registrationForm.value);
-
-console.log(formData.value);
-}*/
+  psw(){
+    console.log(!(this.registrationForm.controls['confirmPassword'].value==this.registrationForm.controls['password'].value));
+    return !((this.registrationForm.controls['confirmPassword'].value)==(this.registrationForm.controls['password'].value));
+  }
 }
