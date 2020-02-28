@@ -16,7 +16,7 @@ export class RegistrationFormComponent implements OnInit {
   matchMessage;
   
     registrationForm= new FormGroup({
-    firstName:this.fb.control('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
+    firstName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     date:new FormControl('',Validators.required),
     gender:new FormControl('',Validators.required),
@@ -42,10 +42,10 @@ export class RegistrationFormComponent implements OnInit {
     let confirmpassword=this.registrationForm.get('passwordGroup').get('confirmPassword').value;
    console.log(password+"   "+ confirmpassword);
     if(password==confirmpassword){
-      this.matchMessage="matching";
+      this.matchMessage="password matched";
     }
     else
-    this.matchMessage="mismatched";
+    this.matchMessage="password missmatched";
   }
   ngOnInit() {
 

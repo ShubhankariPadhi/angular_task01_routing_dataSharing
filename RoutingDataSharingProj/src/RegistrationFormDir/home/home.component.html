@@ -1,13 +1,15 @@
-<div class="container">
-  <h2>home component for registration</h2>
-<nav>
-  <div class="row">
-<button class="btn btn-primary col-sm-3" routerLink="/registrationForm" routerLinkActive="activate">RegistrationForm</button>
+<!--<div class="container">
+  <h2>home component for registration</h2>-->
+  
+<nav class="pt-2">
+  <ul type="none" >
+<li><button class="btn btn-primary col-lg-2 col-md-2 col-sm-3 col-5" routerLink="/registrationForm" routerLinkActive="activate">RegistrationForm</button>
 
-  <button  [hidden]="!check()" class="btn btn-primary offset-sm-1 col-sm-3" routerLink="/loginForm" routerLinkActive="activate">LoginForm</button>
-</div>
+  <button  [hidden]="!check()" class="btn btn-primary  offset-1 col-lg-2 col-md-2 col-sm-3 col-5" routerLink="/loginForm" routerLinkActive="activate">LoginForm</button></li>
+  </ul>  
+<hr>
 </nav>
-</div>
+
 
 
 <router-outlet></router-outlet>
