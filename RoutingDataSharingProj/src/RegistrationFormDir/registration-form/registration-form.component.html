@@ -1,90 +1,4 @@
 
-<!--Template Driven Form Registration form-->
-<!--<div class="container" >
-  <form #myform="ngForm" name="formname" novalidate>
-    <div class="form-group">
-      <label>first name:</label>
-      <input class="form-control" [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel"
-             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
-      <div class="invalid-feedback">
-        <div>required field</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>last name:</label>
-      <input class="form-control" [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel"
-             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
-      <div class="invalid-feedback">
-        <div>required field</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>password:</label>
-      <input class="form-control" [(ngModel)]="model.password" name="firstName" #password="ngModel"
-             [ngClass]="{'is-inValid ':myform.submitted && firstName.invalid}" required/>
-      <div class="invalid-feedback">
-        <div>required field</div>
-      </div>
-
-    </div>
-
-    <button class="btn btn-primary">register</button>
-  </form>
-  {{model | json}}
-
-</div>-->
-
-
-<!--validation of a form using tdf-->
-<!--
-<div class="container">
-  <form  #signupForm="ngForm" name="signupForm" (ngSubmit)="register(signupForm)">
-    <div class="form-group">
-      <label>firstName:</label>
-      <input type="text" class="form-control " required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
-
-      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">super hero name is required</div>
-
-    </div>
-
-    <div class="form-group">
-      <label>specialities</label>
-      <select type="text" class="form-control" [(ngModel)]="model.speciality" name="speciality" #speciality="ngModel">
-        <option *ngFor="let spec of specialities" value="spec">{{spec}}</option>
-      </select>
-      <div [hidden]="speciality.valid || speciality.pristine" class="alert alert-danger">speciality is required</div>
-    </div>
-
-
-      <fieldset ngModelGroup="address">
-        <legend>Address</legend>
-           <div class="form-group">
-            <label>city:</label>
-             <input type="text" name="city" class="form-control" [(ngModel)]="model.city"  ngModel #city="ngModel">
-             <div [hidden]="city.valid||city.pristine" class="alert alert-danger" >
-               city should not be empty
-             </div>
-            </div>
-        <div>
-          <label>pincode:</label>
-          <input type="number" name="pincode" class="form-control" [(ngModel)]="model.pincode" #pincode="ngModel" ngModel>
-          <div [hidden]="pincode.valid || pincode.pristine" class="alert alert-danger">
-            enter a valid pincoden
-          </div>
-        </div>
-
-      </fieldset>
-
-
-    <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Submit</button>
-  </form>
-{{model|json}}
-</div>
--->
-
-
 <div class="container col-lg-5 col-md-5 col-sm-8 col-10">
   <h3>  Welcome to Student Registration form </h3>
 <form  [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onSubmit()" >
@@ -145,7 +59,7 @@
 
   <div class="form-group">
     <label>Password:</label>
-    <input type="text" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
+    <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
     registrationForm.get('passwordGroup').get('password').touched && registrationForm.get('passwordGroup').get('password').invalid}"/>
     <div  *ngIf=" registrationForm.get('passwordGroup').get('password').touched && registrationForm.get('passwordGroup').get('password').invalid" class="invalid-feedback">
       <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.required">first name is required</div>
@@ -159,7 +73,7 @@
 
     <div class="form-group">
     <label>confirmPassword:</label>
-    <input type="text" (keyup)="pswMatch()" formControlName="confirmPassword" class="form-control" [ngClass]="{'is-invalid':
+    <input type="password" (keyup)="pswMatch()" formControlName="confirmPassword" class="form-control" [ngClass]="{'is-invalid':
     registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid  }"/>
     <div  *ngIf=" registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid" class="invalid-feedback">
       <div *ngIf="registrationForm.get('passwordGroup').get('confirmPassword').errors.required">this field cant be empty</div>
@@ -171,7 +85,7 @@
   <div formGroupName="marks">
     <div class="form-group">
       <label>Maths:</label>
-               <input type="text" formControlName="math" class="form-control" [ngClass]="{'is-invalid':
+     <input type="text" formControlName="math" class="form-control" [ngClass]="{'is-invalid':
     registrationForm.get('marks').get('math').touched && registrationForm.get('marks').get('math').invalid}"/> 
       <div  *ngIf=" registrationForm.get('marks').get('math').touched && registrationForm.get('marks').get('math').invalid" class="invalid-feedback">
         <div *ngIf="registrationForm.get('marks').get('math').errors.required">mark is required</div>

@@ -1,3 +1,4 @@
+import { TdfFormValidationComponent } from './../TemplateDrivenFormExample/tdf-form-validation/tdf-form-validation.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import {HomeComponent} from "../RegistrationFormDir/home/home.component";
 @NgModule({
   declarations: [
     AppComponent,
-    StudentListComponent,routingComponents  
+    StudentListComponent,routingComponents  ,
+    TdfFormValidationComponent
   ],
   imports: [
     BrowserModule,

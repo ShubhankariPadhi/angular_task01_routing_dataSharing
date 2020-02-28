@@ -14,7 +14,7 @@
 
     <div class="form-group">
       <label>Password:</label>
-   <input type="text" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
+   <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
     loginForm.get('password').touched && loginForm.get('password').invalid}"/>
       <div  *ngIf=" loginForm.get('password').touched && loginForm.get('password').invalid" class="invalid-feedback">
         <div *ngIf="loginForm.get('password').errors.required">password can't be empty</div>

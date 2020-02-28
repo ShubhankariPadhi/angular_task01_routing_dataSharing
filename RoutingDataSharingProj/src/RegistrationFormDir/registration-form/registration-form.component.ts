@@ -9,10 +9,7 @@ import { from } from 'rxjs';
   styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
-  /*created one object of any type and stored tdf element data in that obj in tepmlate for interpolation*/
-   model:any={};
-  specialities=['energetic','powerful','intelligent'];
-// Reactive Form
+
   matchMessage;
   
     registrationForm= new FormGroup({

@@ -1,3 +1,4 @@
+import { TdfFormValidationComponent } from './../TemplateDrivenFormExample/tdf-form-validation/tdf-form-validation.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {StudentEditComponent} from "../student-edit/student-edit.component";
@@ -22,7 +23,9 @@ const routes: Routes = [
 
   {path:'registrationForm',component:RegistrationFormComponent},
   {path:'loginForm',component:LoginFormComponent},
-  {path:'home',component:HomeComponent}
+  {path:'home',component:HomeComponent},
+
+  {path:'tdfFormpage',component:TdfFormValidationComponent}
 
 ];
 
@@ -33,5 +36,6 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 export const routingComponents=[
-  StudentMarksComponent, StudentEditComponent,HomeComponent,RegistrationFormComponent,LoginFormComponent
+  StudentMarksComponent, StudentEditComponent,HomeComponent,RegistrationFormComponent,LoginFormComponent,
+  TdfFormValidationComponent
 ];
