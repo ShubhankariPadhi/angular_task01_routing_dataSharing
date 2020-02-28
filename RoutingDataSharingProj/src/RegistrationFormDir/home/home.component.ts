@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   constructor() {
     this.mailId = localStorage.getItem('mailId');
     this.password = localStorage.getItem('psw');
-    console.log(this.mailId,  this.password);//
   }
 
   ngOnInit() {

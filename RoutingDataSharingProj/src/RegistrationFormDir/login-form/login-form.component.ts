@@ -31,8 +31,8 @@ successfulMessage;
    //localStorage.clear();
   localStorage.removeItem('mailId');
   localStorage.removeItem('psw');
-  console.log(localStorage.getItem('psw'));
-  this.successfulMessage='successfully logged in';
+  // console.log(localStorage.getItem('psw'));
+  // this.successfulMessage='successfully logged in';
   this.router.navigate(['home']);
   return true;
     }

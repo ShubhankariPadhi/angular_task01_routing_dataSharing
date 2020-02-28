@@ -33,6 +33,5 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 export const routingComponents=[
-  StudentMarksComponent, StudentEditComponent,HomeComponent
-
+  StudentMarksComponent, StudentEditComponent,HomeComponent,RegistrationFormComponent,LoginFormComponent
 ];

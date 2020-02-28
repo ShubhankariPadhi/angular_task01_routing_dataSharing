@@ -12,10 +12,7 @@ import {HomeComponent} from "../RegistrationFormDir/home/home.component";
 @NgModule({
   declarations: [
     AppComponent,
-    StudentListComponent,routingComponents,
-    HomeComponent,
-    RegistrationFormComponent,
-    LoginFormComponent
+    StudentListComponent,routingComponents  
   ],
   imports: [
     BrowserModule,

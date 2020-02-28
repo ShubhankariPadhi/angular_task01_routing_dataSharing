@@ -121,9 +121,9 @@
 
   <div class="form-group">
      Gender
-    <input type="radio" formControlName="gender" value="male" class="form-check" [ngClass]="{'is-invalid':
-    registrationForm.get('firstName').touched && registrationForm.get('gender').invalid}"/>male <br>
-    <input type="radio" formControlName="gender" value="female" class="form-check" [ngClass]="{'is-invalid':
+    <input class="col-sm-3" type="radio" formControlName="gender" value="male" class="form-check" [ngClass]="{'is-invalid':
+    registrationForm.get('firstName').touched && registrationForm.get('gender').invalid}"/>male 
+    <input class="col-sm-3" type="radio" formControlName="gender" value="female" class="form-check" [ngClass]="{'is-invalid':
     registrationForm.get('firstName').touched && registrationForm.get('gender').invalid}"/>female
     <div  *ngIf=" registrationForm.get('gender').touched && registrationForm.get('gender').invalid" class="invalid-feedback">
       <div *ngIf="registrationForm.get('gender').errors.required">choose any</div>
@@ -140,53 +140,53 @@
     </div>
      </div>
 
+<div formGroupName="passwordGroup">
 
   <div class="form-group">
     <label>Password:</label>
     <input type="text" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
-    registrationForm.get('password').touched && registrationForm.get('password').invalid}"/>
-    <div  *ngIf=" registrationForm.get('password').touched && registrationForm.get('password').invalid" class="invalid-feedback">
-      <div *ngIf="registrationForm.get('password').errors.required">first name is required</div>
-      <div *ngIf="registrationForm.get('password').errors.minlength">minimum length should be 8 characters </div>
-      <div *ngIf="registrationForm.get('password').errors.pattern">
+    registrationForm.get('passwordGroup').get('password').touched && registrationForm.get('passwordGroup').get('password').invalid}"/>
+    <div  *ngIf=" registrationForm.get('passwordGroup').get('password').touched && registrationForm.get('passwordGroup').get('password').invalid" class="invalid-feedback">
+      <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.required">first name is required</div>
+      <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.minlength">minimum length should be 8 characters </div>
+      <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.pattern">
         1.) at least 1 upper case character 2.) at least 1 lower case character
         3.) at least 1 numerical character 4.) at least 1 special character It also enforces a min 8 and max 10 length
       </div>
     </div>
   </div>
 
-
-
     <div class="form-group">
     <label>confirmPassword:</label>
-    <input type="text" formControlName="confirmPassword" class="form-control" [ngClass]="{'is-invalid':
-    registrationForm.get('confirmPassword').touched && registrationForm.get('confirmPassword').invalid}"/>
-    <div  *ngIf=" registrationForm.get('confirmPassword').touched && registrationForm.get('confirmPassword').invalid" class="invalid-feedback">
-      <div *ngIf="registrationForm.get('confirmPassword').errors.required">this field cant be empty</div>
-      <div *ngIf="psw()">password missmatched </div>
-    </div>
+    <input type="text" (keyup)="pswMatch()" formControlName="confirmPassword" class="form-control" [ngClass]="{'is-invalid':
+    registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid  }"/>
+    <div  *ngIf=" registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid" class="invalid-feedback">
+      <div *ngIf="registrationForm.get('passwordGroup').get('confirmPassword').errors.required">this field cant be empty</div>
+    </div> {{matchMessage}}
   </div>
-
+</div>
 
   <label>Marks section</label>
   <div formGroupName="marks">
-
     <div class="form-group">
       <label>Maths:</label>
-        <input type="number" formControlName="math" class="form-control" [ngClass]="{'is-invalid':
-    registrationForm.marks.get('math').touched && registrationForm.marks.get('math').invalid}"/>
-      <div  *ngIf=" registrationForm.marks.get('math').touched && registrationForm.marks.get('math').invalid" class="invalid-feedback">
-        <div *ngIf="registrationForm.marks.get('math').errors.required">date is required</div>
+               <input type="text" formControlName="math" class="form-control" [ngClass]="{'is-invalid':
+    registrationForm.get('marks').get('math').touched && registrationForm.get('marks').get('math').invalid}"/> 
+      <div  *ngIf=" registrationForm.get('marks').get('math').touched && registrationForm.get('marks').get('math').invalid" class="invalid-feedback">
+        <div *ngIf="registrationForm.get('marks').get('math').errors.required">mark is required</div>
+        <div *ngIf="registrationForm.get('marks').get('math').errors.pattern">only numbers are allowed</div>
+        
       </div>
     </div>
 
     <div class="form-group">
       <label>English:</label>
       <input type="text" formControlName="english" class="form-control" [ngClass]="{'is-invalid':
-    registrationForm.get('formGroupName.english').touched && registrationForm.get('english').invalid}"/>
-      <div  *ngIf=" registrationForm.get('english').touched && registrationForm.get('english').invalid" class="invalid-feedback">
-        <div *ngIf="registrationForm.get('english').errors.required">mark is required</div>
-       </div>
+    registrationForm.get('marks').get('english').touched && registrationForm.get('marks').get('english').invalid}"/>
+      <div  *ngIf=" registrationForm.get('marks').get('english').touched && registrationForm.get('marks').get('english').invalid" class="invalid-feedback">
+        <div *ngIf="registrationForm.get('marks').get('english').errors.required">mark is required</div>
+        <div *ngIf="registrationForm.get('marks').get('english').errors.required">only numbers are allowed</div>
+      </div>
     </div>
 
   </div>

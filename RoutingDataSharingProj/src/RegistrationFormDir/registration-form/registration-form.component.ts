@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn, ValidationErrors} from "@angular/forms";
 import {Router} from "@angular/router";
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-registration-form',
@@ -11,35 +12,50 @@ export class RegistrationFormComponent implements OnInit {
   /*created one object of any type and stored tdf element data in that obj in tepmlate for interpolation*/
    model:any={};
   specialities=['energetic','powerful','intelligent'];
-  // Reactive Form
+// Reactive Form
+  matchMessage;
+  
     registrationForm= new FormGroup({
     firstName:this.fb.control('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     date:new FormControl('',Validators.required),
     gender:new FormControl('',Validators.required),
     emailId:new FormControl('',[Validators.required,Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")]),
-    password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,10}$')]),
-    confirmPassword:new FormControl('',Validators.required),
+   
+    passwordGroup:new FormGroup({
+      password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,10}$')]),
+      confirmPassword:new FormControl('',[Validators.required])
+    }),
+ 
 
     marks:new FormGroup({
-          math:new FormControl('',Validators.required),
-          english:new FormControl('',Validators.required),
+          math:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
+          english:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
     }),
 
   });
   constructor(private fb: FormBuilder , private router:Router) {
 
   }
-
+  pswMatch(){
+    let password=this.registrationForm.get('passwordGroup').get('password').value;
+    let confirmpassword=this.registrationForm.get('passwordGroup').get('confirmPassword').value;
+   console.log(password+"   "+ confirmpassword);
+    if(password==confirmpassword){
+      this.matchMessage="matching";
+    }
+    else
+    this.matchMessage="mismatched";
+  }
   ngOnInit() {
 
   }
   onSubmit(){
 
 
-    let emailId=this.registrationForm.controls['emailId'].value;
-    let password=this.registrationForm.controls['password'].value;
-
+    let emailId=this.registrationForm.get('emailId').value;
+    let password=this.registrationForm.get('passwordGroup').get('password').value;
+    console.log('local strg'+emailId,password);
 
     localStorage.setItem('mailId',emailId);
     localStorage.setItem('psw',password);
@@ -47,8 +63,5 @@ export class RegistrationFormComponent implements OnInit {
     console.log(JSON.stringify(this.registrationForm.value));
     this.router.navigate(['home']);
   }
-  psw(){
-    console.log(!(this.registrationForm.controls['confirmPassword'].value==this.registrationForm.controls['password'].value));
-    return !((this.registrationForm.controls['confirmPassword'].value)==(this.registrationForm.controls['password'].value));
-  }
+
 }

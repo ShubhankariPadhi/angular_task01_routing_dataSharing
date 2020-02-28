@@ -14,7 +14,11 @@
 
     <div class="form-group">
       <label>Password:</label>
-      <input type="text" formControlName="password" class="form-control">
+   <input type="text" formControlName="password" class="form-control" [ngClass]="{'is-invalid':
+    loginForm.get('password').touched && loginForm.get('password').invalid}"/>
+      <div  *ngIf=" loginForm.get('password').touched && loginForm.get('password').invalid" class="invalid-feedback">
+        <div *ngIf="loginForm.get('password').errors.required">password can't be empty</div>
+       </div>
     </div>
 
 
@@ -26,8 +30,4 @@
   <div>
     {{successfulMessage}}
   </div>
- <!-- <div *ngIf="onSubmit()" class="text text-success">{{successfulMessage}}
-  </div>
-  <div *ngIf="!onSubmit()" class="text text-danger">{{successfulMessage}}
-  </div>-->
 </div>
