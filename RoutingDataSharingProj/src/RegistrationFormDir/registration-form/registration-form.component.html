@@ -10,7 +10,8 @@
     <div  *ngIf=" registrationForm.get('firstName').touched && registrationForm.get('firstName').invalid" class="invalid-feedback">
       <div *ngIf="registrationForm.get('firstName').errors.required">first name is required</div>
       <div *ngIf="registrationForm.get('firstName').errors.minlength">minimum length should be 3 characters </div>
-      <div *ngIf="registrationForm.get('firstName').errors.maxlength">maximum length should be 20 characters </div>
+      <div  *ngIf="registrationForm.get('firstName').errors.maxlength">maximum length should be 20 characters </div>
+      <div *ngIf="registrationForm.get('firstName').errors.pattern">only characters are allowed</div> 
     </div>
   </div>
 
@@ -22,6 +23,7 @@
       <div *ngIf="registrationForm.get('lastName').errors.required">Last name is required</div>
       <div *ngIf="registrationForm.get('lastName').errors.minlength">minimum length should be 3 characters </div>
       <div *ngIf="registrationForm.get('lastName').errors.maxlength">maximum length should be 20 characters </div>
+      <div *ngIf="registrationForm.get('lastName').errors.pattern">only characters are allowed</div> 
     </div>
   </div>
 
@@ -41,7 +43,7 @@
    <input type="radio" formControlName="gender" value="female"  [ngClass]="{'is-invalid':
    registrationForm.get('firstName').touched && registrationForm.get('gender').invalid}"/> female
    <div  *ngIf=" registrationForm.get('gender').touched && registrationForm.get('gender').invalid" class="invalid-feedback">
-     <div *ngIf="registrationForm.get('gender').errors.required">choose any</div>
+     <div *ngIf="registrationForm.get('gender').errors.required">choose one</div>
    </div>
  </div>
 
@@ -50,7 +52,7 @@
     <input type="text" formControlName="emailId" class="form-control" [ngClass]="{'is-invalid':
     registrationForm.get('emailId').touched && registrationForm.get('emailId').invalid}"/>
     <div  *ngIf=" registrationForm.get('emailId').touched && registrationForm.get('emailId').invalid" class="invalid-feedback">
-      <div *ngIf="registrationForm.get('emailId').errors.required">emailId is mandatory</div>
+      <div *ngIf="registrationForm.get('emailId').errors.required">emailId is required</div>
       <div *ngIf="registrationForm.get('emailId').errors.pattern"> you should follow the pattern xyz@gmail.com </div>
     </div>
      </div>
@@ -65,8 +67,7 @@
       <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.required">first name is required</div>
       <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.minlength">minimum length should be 8 characters </div>
       <div *ngIf="registrationForm.get('passwordGroup').get('password').errors.pattern">
-        1.) at least 1 upper case character 2.) at least 1 lower case character
-        3.) at least 1 numerical character 4.) at least 1 special character It also enforces a min 8 and max 10 length
+        Password must contains at least 1 upper case character,1 lower case character, 1 numerical character,1 special character It also enforces a min 8 and max 10 length
       </div>
     </div>
   </div>
@@ -76,8 +77,9 @@
     <input type="password" (keyup)="pswMatch()" formControlName="confirmPassword" class="form-control" [ngClass]="{'is-invalid':
     registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid  }"/>
     <div  *ngIf=" registrationForm.get('passwordGroup').get('confirmPassword').touched && registrationForm.get('passwordGroup').get('confirmPassword').invalid" class="invalid-feedback">
-      <div *ngIf="registrationForm.get('passwordGroup').get('confirmPassword').errors.required">this field cant be empty</div>
-    </div> {{matchMessage}}
+      <div *ngIf="registrationForm.get('passwordGroup').get('confirmPassword').errors.required">confirmpassword is required</div>
+    </div><span class="text-danger"> {{matchMessage}} </span>
+    
   </div>
 </div>
 
@@ -100,7 +102,7 @@
     registrationForm.get('marks').get('english').touched && registrationForm.get('marks').get('english').invalid}"/>
       <div  *ngIf=" registrationForm.get('marks').get('english').touched && registrationForm.get('marks').get('english').invalid" class="invalid-feedback">
         <div *ngIf="registrationForm.get('marks').get('english').errors.required">mark is required</div>
-        <div *ngIf="registrationForm.get('marks').get('english').errors.required">only numbers are allowed</div>
+        <div *ngIf="registrationForm.get('marks').get('english').errors.pattern">only numbers are allowed</div>
       </div>
     </div>
 
@@ -111,7 +113,7 @@
 
 
 </form>
-  {{registrationForm.value | json}}
+ <!-- {{registrationForm.value | json}} -->
 </div>
 
 

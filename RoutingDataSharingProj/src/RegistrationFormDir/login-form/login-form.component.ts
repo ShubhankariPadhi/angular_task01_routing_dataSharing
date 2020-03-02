@@ -8,9 +8,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  emailMismatchedMessage;passwordMissmatchedMessage;
 mailId;
 password;
-successfulMessage;
+
   loginForm= new FormGroup({
     emailId:new FormControl('',Validators.required),
     password:new FormControl('',Validators.required),
@@ -24,7 +25,8 @@ successfulMessage;
   ngOnInit() {
   }
   onSubmit(){
-
+    this.passwordMissmatchedMessage="";
+    this.emailMismatchedMessage="";
     if((this.mailId==this.loginForm.controls['emailId'].value )&&(this.password==this.loginForm.controls['password'].value)){
 
     console.log("inside login",this.mailId)
@@ -34,12 +36,19 @@ successfulMessage;
   // console.log(localStorage.getItem('psw'));
   // this.successfulMessage='successfully logged in';
   this.router.navigate(['home']);
+ 
   return true;
     }
-    else {
-      this.successfulMessage='log in failured';
+   
+    else if(this.mailId !=this.loginForm.controls['emailId'].value){
+      this.emailMismatchedMessage='wrong emailId';
       return false;
     }
+    else if(this.password!=this.loginForm.controls['password'].value){
+      this.passwordMissmatchedMessage='wrong password';
+      return false;
+    }
+
 }
 
 

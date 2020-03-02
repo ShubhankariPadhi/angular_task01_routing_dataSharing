@@ -13,8 +13,8 @@ export class RegistrationFormComponent implements OnInit {
   matchMessage;
   
     registrationForm= new FormGroup({
-    firstName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
-    lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
+    firstName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20),Validators.pattern("^[A-Za-z]*$")]),
+    lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20),Validators.pattern("^[A-Za-z]*$")]),
     date:new FormControl('',Validators.required),
     gender:new FormControl('',Validators.required),
     emailId:new FormControl('',[Validators.required,Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")]),
@@ -38,11 +38,13 @@ export class RegistrationFormComponent implements OnInit {
     let password=this.registrationForm.get('passwordGroup').get('password').value;
     let confirmpassword=this.registrationForm.get('passwordGroup').get('confirmPassword').value;
    console.log(password+"   "+ confirmpassword);
-    if(password==confirmpassword){
-      this.matchMessage="password matched";
+   if(confirmpassword!=''  && confirmpassword!= null && confirmpassword!=undefined ){
+    if( password==confirmpassword){
+      this.matchMessage="";
     }
     else
     this.matchMessage="password missmatched";
+  }
   }
   ngOnInit() {
 
