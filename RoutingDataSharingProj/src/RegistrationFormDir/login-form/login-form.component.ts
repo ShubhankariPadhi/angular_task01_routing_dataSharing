@@ -8,13 +8,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  emailMismatchedMessage;passwordMissmatchedMessage;
+ // emailMismatchedMessage;
+ passwordMissmatchedMessage;
 mailId;
 password;
 
   loginForm= new FormGroup({
-    emailId:new FormControl('',Validators.required),
-    password:new FormControl('',Validators.required),
+    emailId:new FormControl('',[Validators.required,Validators.pattern('[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}')]),
+    password:new FormControl('',[Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,10}$')]),
       });
 
   constructor(private router:Router) {
@@ -26,7 +27,7 @@ password;
   }
   onSubmit(){
     this.passwordMissmatchedMessage="";
-    this.emailMismatchedMessage="";
+   // this.emailMismatchedMessage="";
     if((this.mailId==this.loginForm.controls['emailId'].value )&&(this.password==this.loginForm.controls['password'].value)){
 
     console.log("inside login",this.mailId)
@@ -40,12 +41,16 @@ password;
   return true;
     }
    
-    else if(this.mailId !=this.loginForm.controls['emailId'].value){
-      this.emailMismatchedMessage='wrong emailId';
+   /*  else if(this.mailId !=this.loginForm.controls['emailId'].value){
+      this.emailMismatchedMessage='emailId is no';
       return false;
     }
     else if(this.password!=this.loginForm.controls['password'].value){
-      this.passwordMissmatchedMessage='wrong password';
+      this.passwordMissmatchedMessage=' password mismatched';
+      return false;
+    } */
+    else {
+      this.passwordMissmatchedMessage='userId or password mismatched';
       return false;
     }
 

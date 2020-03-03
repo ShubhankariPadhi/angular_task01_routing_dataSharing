@@ -11,7 +11,8 @@ import { from } from 'rxjs';
 export class RegistrationFormComponent implements OnInit {
 
   matchMessage;
-  
+  invalidDateMessage;
+
     registrationForm= new FormGroup({
     firstName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20),Validators.pattern("^[A-Za-z]*$")]),
     lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20),Validators.pattern("^[A-Za-z]*$")]),
@@ -26,14 +27,38 @@ export class RegistrationFormComponent implements OnInit {
  
 
     marks:new FormGroup({
-          math:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
-          english:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
+          math:new FormControl('',[Validators.required,Validators.pattern("^[0-9.]*$")]),
+          english:new FormControl('',[Validators.required,Validators.pattern("^[0-9.]*$")]),
     }),
 
   });
   constructor(private fb: FormBuilder , private router:Router) {
 
   }
+
+
+
+
+  dateValidate(){
+    let date = new Date();
+    let enteredDate = this.registrationForm.get('date').value;
+    let d = date.getDay();
+    let m = date.getMonth();
+    let y = date.getFullYear();
+    let currentDate = new Date(y, m, d);
+    let myDate = new Date(enteredDate);
+    console.log("myDate: "+myDate);
+    console.log("currentDate: "+currentDate);
+    if(enteredDate != undefined && enteredDate != ''){
+    if(currentDate <= myDate ){
+    this.invalidDateMessage = "Invalid DateOfBirth";
+    }
+    else{
+    this.invalidDateMessage = "";
+    }
+    }
+    }
+
   pswMatch(){
     let password=this.registrationForm.get('passwordGroup').get('password').value;
     let confirmpassword=this.registrationForm.get('passwordGroup').get('confirmPassword').value;

@@ -9,8 +9,11 @@ export class AppComponent {
   title = 'RoutingDataSharingProj';
 
 
-  constructor() {
+  constructor() { }
 
+  ngOnInit() {
   }
+
+
 
 }
