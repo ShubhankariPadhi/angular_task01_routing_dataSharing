@@ -1,3 +1,5 @@
+import { StructuralDirectivesComponent } from './../directivesExample/structural-directives/structural-directives.component';
+import { DirectivesComponent } from './../directivesExample/directives/directives.component';
 import { HomeComponent } from './../home/home.component';
 import { AppComponent } from './app.component';
 import { TdfFormValidationComponent } from './../TemplateDrivenFormExample/tdf-form-validation/tdf-form-validation.component';
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path:'loginForm',component:LoginFormComponent},
   
 
-  {path:'tdfFormpage',component:TdfFormValidationComponent}
+  {path:'tdfFormpage',component:TdfFormValidationComponent},
+  {path:'directiveExample',component: DirectivesComponent},
+  {path:'structuralDirective',component: StructuralDirectivesComponent}
 
 ];
 

@@ -1,3 +1,7 @@
+import { UnlessDirective } from './../directivesExample/unless.directive';
+import { StructuralDirectivesComponent } from './../directivesExample/structural-directives/structural-directives.component';
+import { DirectivesComponent } from './../directivesExample/directives/directives.component';
+import { HighLightDirective } from './../directivesExample/high-light.directive';
 import { TdfFormValidationComponent } from './../TemplateDrivenFormExample/tdf-form-validation/tdf-form-validation.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +16,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     StudentListComponent,routingComponents  ,
-    TdfFormValidationComponent
+    TdfFormValidationComponent,
+    HighLightDirective ,
+    DirectivesComponent,
+    StructuralDirectivesComponent,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,

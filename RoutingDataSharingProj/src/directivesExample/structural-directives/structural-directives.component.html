@@ -1,0 +1,36 @@
+<p>structural-directives works!</p>
+<!-- builtin -->
+<div *ngIf="true;then trueblock else elseblock"></div>
+  
+    <ng-template #trueblock>
+        this is true block
+    </ng-template>
+    <ng-template #elseblock>
+        this is true block
+    </ng-template>
+
+    <div *ngFor="let num of numberArray  let i=index">
+         <div *ngIf='(num%2==0)'>{{i}}> {{num}}</div> 
+    </div>
+
+    <div [ngSwitch]="'anything'">
+        <div *ngSwitchCase="'anything'">display anything </div>
+        <div *ngSwitchCase="'something'">display something </div>
+        <div *ngSwitchDefault>display default case </div>
+    </div>
+
+    <ng-template [ngIf]="true">
+        this is truthy block
+    </ng-template>
+    <!-- <ng-template [ngIf]="true;then truthybblock else falsyblock"></ng-template>  err:binding expression cannot contain chaned expression
+    <div #truthyblock>
+        this is truthy block
+    </div>
+    <div #falsyblock>
+        falsy block
+    </div>-->
+
+
+<!-- structural custom  directive-->
+
+<p *appUnless="true">Show this sentence unless the condition is true.</p>
