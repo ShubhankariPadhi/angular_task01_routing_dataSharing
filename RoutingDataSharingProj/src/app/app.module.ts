@@ -1,3 +1,4 @@
+import { EmployeeListComponent } from './../servicesExamples/employee-list/employee-list.component';
 import { UnlessDirective } from './../directivesExample/unless.directive';
 import { StructuralDirectivesComponent } from './../directivesExample/structural-directives/structural-directives.component';
 import { DirectivesComponent } from './../directivesExample/directives/directives.component';
@@ -20,7 +21,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HighLightDirective ,
     DirectivesComponent,
     StructuralDirectivesComponent,
-    UnlessDirective
+    UnlessDirective,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,

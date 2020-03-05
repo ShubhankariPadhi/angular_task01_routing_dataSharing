@@ -1,3 +1,4 @@
+import { EmployeeListComponent } from './../servicesExamples/employee-list/employee-list.component';
 import { StructuralDirectivesComponent } from './../directivesExample/structural-directives/structural-directives.component';
 import { DirectivesComponent } from './../directivesExample/directives/directives.component';
 import { HomeComponent } from './../home/home.component';
@@ -33,7 +34,8 @@ const routes: Routes = [
 
   {path:'tdfFormpage',component:TdfFormValidationComponent},
   {path:'directiveExample',component: DirectivesComponent},
-  {path:'structuralDirective',component: StructuralDirectivesComponent}
+  {path:'structuralDirective',component: StructuralDirectivesComponent},
+  {path:'servicesEx',component:EmployeeListComponent}
 
 ];
 
