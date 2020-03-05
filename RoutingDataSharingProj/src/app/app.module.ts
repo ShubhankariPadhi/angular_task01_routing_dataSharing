@@ -1,3 +1,5 @@
+import { AccountComponent } from './../servicesExamples/account/account.component';
+
 import { EmployeeListComponent } from './../servicesExamples/employee-list/employee-list.component';
 import { UnlessDirective } from './../directivesExample/unless.directive';
 import { StructuralDirectivesComponent } from './../directivesExample/structural-directives/structural-directives.component';
@@ -23,6 +25,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     StructuralDirectivesComponent,
     UnlessDirective,
     EmployeeListComponent
+  
   ],
   imports: [
     BrowserModule,
